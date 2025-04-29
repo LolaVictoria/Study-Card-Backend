@@ -10,7 +10,15 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Middlewares
-app.use(cors());
+const allowedOrigins = ['http://localhost:5173', 'https://study-card-ebon.vercel.app/'];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 // Connect database (available via pool)
